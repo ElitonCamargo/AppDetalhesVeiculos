@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer, useRoute  } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from './components/Home';
+import Veiculo from './components/Veiculos';
+import Detalhes from './components/Detalhes';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function MyTabs() {
+	return (
+		<Tab.Navigator>
+			<Tab.Screen name="Home" component={ Home } />
+			<Tab.Screen name="Veículos" component={ Veiculo } />
+		</Tab.Navigator>
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+export default function App() {  
+	return (    
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Tabs"        
+        	screenOptions={{
+				headerShown: false
+			}}
+      	>
+				<Stack.Screen name="Tabs" component={MyTabs} />
+				<Stack.Screen name="Detalhes" component={ Detalhes } />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
+}
