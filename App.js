@@ -10,7 +10,7 @@ import Detalhes from './components/Detalhes';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
+// Atualização
 function MyTabs() {
 	return (
 		<Tab.Navigator>
